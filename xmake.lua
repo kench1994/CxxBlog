@@ -1,34 +1,23 @@
--- option("openssl")
---     set_showmenu(true)
---     before_check(function (option)
---         import("lib.detect.find_package")
---         option:add(find_package("openssl"))
---     end)
+
+add_rules("mode.debug", "mode.release")
+set_config("vs_runtime", "MD")
+set_config("shared", "true")
 
 add_requires("conan::libcurl/7.80.0", {alias = "curl"})
+add_requires("conan::boost/1.69.0", {alias = "boost"})
+add_requires("conan::hiredis/1.0.2", {alias = "hiredis"})
+add_requires("conan::rapidjson/cci.20211112", {alias = "rapidjson"})
+
 
 target("CxxCms")
     set_kind("binary")
     add_includedirs("deps")
     add_includedirs("deps/crow/include", "deps/crow/include/crow")
-    add_files("deps/hiredis/*.c", "deps/oauth/*.cpp", "deps/restclient/*.cpp", "deps/sundown/*.c")
+    add_files("deps/oauth/*.cpp", "deps/restclient/*.cpp", "deps/sundown/*.c")
     add_includedirs("deps/redis3m/include")
     add_files("deps/redis3m/src/*.cpp", "deps/redis3m/src/utils/*.cpp", "deps/redis3m/src/patterns/*.cpp");
-
-    
     add_files("app/*.cpp")
 
-    add_includedirs("/home/kench/workspace/boost_1_69_0/include")
-    add_linkdirs("/home/kench/workspace/boost_1_69_0/build/debug/lib")
-    add_links("boost_system", "boost_thread", "boost_date_time", "boost_filesystem", "boost_regex", "boost_random")
-
-    add_includedirs("/home/kench/miniconda3/include")
-    add_linkdirs("/home/kench/workspace/boost_1_69_0/build/debug/lib")
-    add_links("boost_system", "boost_thread", "boost_date_time", "boost_filesystem", "boost_regex", "boost_random")
-
     set_symbols("debug")
-    add_packages("curl")
-    -- on_load(function (target)
-    --     target:add(find_packages("openssl", "curl"))
-    -- end)
+    add_packages("curl", "boost", "hiredis", "rapidjson")
     add_syslinks("pthread")
