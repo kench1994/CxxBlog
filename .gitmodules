@@ -4,9 +4,3 @@
 [submodule "deps/crow"]
 	path = deps/crow
 	url = https://github.com/ipkn/crow.git
-[submodule "deps/deps/sundown"]
-	path = deps/deps/sundown
-	url = https://github.com/vmg/sundown.git
-[submodule "deps/sundown"]
-	path = deps/sundown
-	url = https://github.com/vmg/sundown.git

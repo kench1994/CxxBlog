@@ -1,6 +1,6 @@
 #include <crow.h>
-#include "json.h"
-#include "mustache.h"
+#include "crow/json.h"
+#include "crow/mustache.h"
 
 #include "api.h"
 #include "config.h"
