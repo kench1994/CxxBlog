@@ -2,5 +2,5 @@ build
 config.h
 static/images/qn.png
 attachments/
-.vscode
 .xmake
+compile_commands.json
