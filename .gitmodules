@@ -7,3 +7,6 @@
 [submodule "deps/deps/sundown"]
 	path = deps/deps/sundown
 	url = https://github.com/vmg/sundown.git
+[submodule "deps/sundown"]
+	path = deps/sundown
+	url = https://github.com/vmg/sundown.git
