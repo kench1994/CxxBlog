@@ -16,7 +16,6 @@ else
     add_cxflags("-MD", {force = true})
     set_symbols("debug")
     set_optimize("none")
-    set_symbols("hidden")
 end
 
 add_requires("conan::libcurl/7.80.0", {alias = "curl"})
@@ -32,12 +31,10 @@ target("CxxCms")
 
     add_includedirs("deps")
     add_includedirs("deps/crow/include")
-    add_files("deps/oauth/*.cpp", "deps/restclient/*.cpp", "deps/sundown/*.c")
     add_includedirs("deps/redis3m/include")
     add_files("deps/redis3m/src/*.cpp", "deps/redis3m/src/utils/*.cpp", "deps/redis3m/src/patterns/*.cpp");
+    add_files("deps/oauth/*.cpp", "deps/restclient/*.cpp", "deps/sundown/*.c")
     add_files("app/*.cpp")
-    
-
 
     add_packages("curl", "boost", "hiredis", "rapidjson")
     add_syslinks("pthread")
