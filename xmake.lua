@@ -15,7 +15,6 @@ else
     set_config("arch", "x86_64")
     add_cxflags("-MD", {force = true})
     set_symbols("debug")
-    set_optimize("none")
 end
 
 add_requires("conan::libcurl/7.80.0", {alias = "curl"})
