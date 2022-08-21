@@ -1,0 +1,34 @@
+version: '3'
+services:
+  couchdb:
+    container_name: couchdb
+    image: couchdb:2.3.1
+    ports:
+      - "5894:5894"
+    network_mode: "host"
+    volumes:
+      - /opt/couchdb:/var/lib/couchdb
+
+  redis :
+    container_name: redis
+    image: redis
+    ports:
+      - "6379:6379"
+    network_mode: "host"
+    volumes:
+      - /opt/redis/conf/redis.conf:/etc/redis/redis.conf
+      - /opt/redis/data:/data
+    command: ["redis-server", "/etc/redis/redis.conf", "--appendonly", "yes"]
+
+  nginx:
+    container_name: nginx
+    image: nginx
+    ports:
+      - "80:80"
+    network_mode: "host"
+    volumes:
+      - ${PWD}/:/mnt/blog/
+      - /opt/nginx/nginx.conf:/etc/nginx/nginx.conf 
+      - /opt/nginx/logs:/var/log/nginx 
+      - /opt/nginx/html:/usr/share/nginx/html 
+      - /opt/nginx/conf:/etc/nginx/conf.d

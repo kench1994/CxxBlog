@@ -43,7 +43,7 @@ int main()
         begin = clock();
         double time_spent;
         crow::mustache::context ctx;
-        ctx["title"] = "LeanClub";
+        ctx["title"] = "Django";
         ctx["online"] = GetOnlineCount();
         ctx["topics"] = render_topic_list_string(get_new_topic(1,0));
         ctx["categorynav"] = category_nav;

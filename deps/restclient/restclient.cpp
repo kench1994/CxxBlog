@@ -8,7 +8,7 @@
          INCLUDES
   ========================*/
 #include "restclient.h"
-#include "../../app/config.h"
+#include "../app/config.h"
 #include <cstring>
 #include <string>
 #include <iostream>

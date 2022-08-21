@@ -1,0 +1,3 @@
+[submodule "deps/crow"]
+	path = deps/crow
+	url = https://github.com/ipkn/crow.git

@@ -246,18 +246,19 @@ string get_notifications(string uid){
 }
 
 void check_at_notification(string uname,string url,string content){
-    boost::regex reg("@(.*?) ");
-    boost::smatch match;
-    boost::sregex_token_iterator iter(content.begin(), content.end(), reg, 1);
-    boost::sregex_token_iterator end;
-    for( ; iter != end; ++iter ) {
-        string uinfo = user_info_by_name(*iter);
-        if(uinfo != "error"){
-            crow::json::rvalue rv = crow::json::load(uinfo);
-            string uid = rv["rows"][0]["value"]["uid"].s();
-            add_notification(uid, uname, "在帖子中提到了您","https://leanclub.org/topic/" + url);
-        }
-    }
+    //TODO
+    // boost::regex reg("@(.*?) ");
+    // boost::smatch match;
+    // boost::sregex_token_iterator iter(content.begin(), content.end(), reg, 1);
+    // boost::sregex_token_iterator end;
+    // for( ; iter != end; ++iter ) {
+    //     string uinfo = user_info_by_name(*iter);
+    //     if(uinfo != "error"){
+    //         crow::json::rvalue rv = crow::json::load(uinfo);
+    //         string uid = rv["rows"][0]["value"]["uid"].s();
+    //         add_notification(uid, uname, "在帖子中提到了您","https://leanclub.org/topic/" + url);
+    //     }
+    // }
 }
 
 string add_notification(string uid,string fromname,string content,string link){
@@ -347,22 +348,25 @@ string add_reply(string username,string content,string tid){
 }
 
 string change_username(string uid,string username){
-    if(user_info_by_name(username) == "error"){
-        boost::regex r("[a-zA-Z0-9_]+");  // At least one character in a-z or A-Z ranges
-        bool match = boost::regex_match(username, r);
-        if (match){
-            RestClient::response r = RestClient::put(DATABASE_URL"user/_design/update/_update/changeName/" + uid + "?username=" + username, "text/plain", "");
-            if(r.code == 200 && r.body == "Success"){
-                return "success";
-            }else{
-                return r.body;
-            }
-        }
-        else{
-            return "必须为字母或数字";
-        }
-    }
-    return "Username already exits";
+    //TODO:
+    return username;
+
+    // if(user_info_by_name(username) == "error"){
+    //     boost::regex r("[a-zA-Z0-9_]+");  // At least one character in a-z or A-Z ranges
+    //     bool match = boost::regex_match(username, r);
+    //     if (match){
+    //         RestClient::response r = RestClient::put(DATABASE_URL"user/_design/update/_update/changeName/" + uid + "?username=" + username, "text/plain", "");
+    //         if(r.code == 200 && r.body == "Success"){
+    //             return "success";
+    //         }else{
+    //             return r.body;
+    //         }
+    //     }
+    //     else{
+    //         return "必须为字母或数字";
+    //     }
+    // }
+    // return "Username already exits";
 }
 
 string change_avatar(string uid,string avatar){
